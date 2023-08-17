@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testingreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c19ad873-cffd-43e5-b830-60a7adafac75">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <subDataset name="nutrientDataSet" uuid="c6e3e11f-b156-4b3c-8440-d4de37b23f2b">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="nutrientName" class="java.lang.String"/>
+        <field name="nutrientValue" class="java.lang.Integer"/>
+    </subDataset>
+    <parameter name="firstName" class="java.lang.String"/>
+    <parameter name="age" class="java.lang.Integer"/>
+    <parameter name="nutrientDataSet" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="95" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="0" width="559" height="80" backcolor="#DED9D9" uuid="57ef84ed-ea31-4d90-873a-8f4d475d2c64"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="203" y="20" width="149" height="40" uuid="e3c5147d-b572-41aa-928a-1a147a682ac6"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Rockwell" size="26" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Test Report]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="44" splitType="Stretch">
+            <staticText>
+                <reportElement x="350" y="0" width="109" height="20" uuid="f2b887e0-2c73-4021-9da0-3a68213681a2"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Report Generated on  : ]]></text>
+            </staticText>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="465" y="0" width="90" height="20" uuid="f0c12db6-9fcc-4245-93a1-a9da3d24ed91"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="211" splitType="Stretch">
+            <textField>
+                <reportElement x="10" y="0" width="100" height="20" uuid="0f2eae37-09fc-495a-9a37-dd4000f6098b"/>
+                <textElement textAlignment="Left">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{firstName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="10" y="20" width="100" height="20" uuid="375ed9b2-04f9-4be3-a6ce-14446ae28433"/>
+                <textElement textAlignment="Left">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["age : "+$P{age}]]></textFieldExpression>
+            </textField>
+            <pieChart>
+                <chart evaluationTime="Report">
+                    <reportElement x="280" y="0" width="200" height="200" uuid="3478c95a-c5d5-4596-a94c-959f2a85a10f"/>
+                    <chartTitle/>
+                    <chartSubtitle/>
+                    <chartLegend/>
+                </chart>
+                <pieDataset>
+                    <dataset>
+                        <datasetRun subDataset="nutrientDataSet" uuid="98852422-a039-4bfe-8215-fc0577617bef">
+                            <dataSourceExpression><![CDATA[$P{nutrientDataSet}]]></dataSourceExpression>
+                        </datasetRun>
+                    </dataset>
+                    <keyExpression><![CDATA[$F{nutrientName}]]></keyExpression>
+                    <valueExpression><![CDATA[$F{nutrientValue}]]></valueExpression>
+                    <labelExpression><![CDATA[$F{nutrientValue}+""]]></labelExpression>
+                </pieDataset>
+                <piePlot>
+                    <plot/>
+                    <itemLabel/>
+                </piePlot>
+            </pieChart>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>
