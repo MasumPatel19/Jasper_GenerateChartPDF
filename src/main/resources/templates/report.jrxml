@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testingreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c19ad873-cffd-43e5-b830-60a7adafac75">
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
     <subDataset name="nutrientDataSet" uuid="c6e3e11f-b156-4b3c-8440-d4de37b23f2b">
@@ -9,9 +8,15 @@
         <field name="nutrientName" class="java.lang.String"/>
         <field name="nutrientValue" class="java.lang.Integer"/>
     </subDataset>
-    <parameter name="firstName" class="java.lang.String"/>
-    <parameter name="age" class="java.lang.Integer"/>
+    <subDataset name="nutrientDataSet2" uuid="64e118bb-c2e1-4a49-914b-e14fe09cd61a">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="nutrientName" class="java.lang.String"/>
+        <field name="nutrientValue" class="java.lang.Integer"/>
+    </subDataset>
     <parameter name="nutrientDataSet" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="nutrientDataSet2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <queryString>
         <![CDATA[]]>
     </queryString>
@@ -47,35 +52,18 @@
             </textField>
         </band>
     </pageHeader>
-    <columnHeader>
-        <band height="61" splitType="Stretch"/>
-    </columnHeader>
     <detail>
-        <band height="211" splitType="Stretch">
-            <textField>
-                <reportElement x="10" y="0" width="100" height="20" uuid="0f2eae37-09fc-495a-9a37-dd4000f6098b"/>
-                <textElement textAlignment="Left">
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$P{firstName}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="10" y="20" width="100" height="20" uuid="375ed9b2-04f9-4be3-a6ce-14446ae28433"/>
-                <textElement textAlignment="Left">
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <textFieldExpression><![CDATA["age : "+$P{age}]]></textFieldExpression>
-            </textField>
+        <band height="554" splitType="Stretch">
             <pieChart>
                 <chart evaluationTime="Report">
-                    <reportElement x="280" y="0" width="200" height="200" uuid="3478c95a-c5d5-4596-a94c-959f2a85a10f"/>
+                    <reportElement x="180" y="20" width="200" height="200" uuid="3df1ff41-1c6b-4b2e-ab08-72f880796b3b"/>
                     <chartTitle/>
                     <chartSubtitle/>
                     <chartLegend/>
                 </chart>
                 <pieDataset>
                     <dataset>
-                        <datasetRun subDataset="nutrientDataSet" uuid="98852422-a039-4bfe-8215-fc0577617bef">
+                        <datasetRun subDataset="nutrientDataSet" uuid="ee2b2c36-8901-456d-94dd-3927e3a1243f">
                             <dataSourceExpression><![CDATA[$P{nutrientDataSet}]]></dataSourceExpression>
                         </datasetRun>
                     </dataset>
@@ -88,15 +76,37 @@
                     <itemLabel/>
                 </piePlot>
             </pieChart>
+            <barChart>
+                <chart evaluationTime="Report">
+                    <reportElement x="3" y="250" width="200" height="200" uuid="36a1434e-990b-4924-a76e-365ccae20cf7"/>
+                    <chartTitle/>
+                    <chartSubtitle/>
+                    <chartLegend/>
+                </chart>
+                <categoryDataset>
+                    <dataset>
+                        <datasetRun subDataset="nutrientDataSet2" uuid="d5e746c5-f038-4ed3-b860-02815fc5f125">
+                            <dataSourceExpression><![CDATA[$P{nutrientDataSet2}]]></dataSourceExpression>
+                        </datasetRun>
+                    </dataset>
+                    <categorySeries>
+                        <seriesExpression><![CDATA[$F{nutrientName}]]></seriesExpression>
+                        <categoryExpression><![CDATA[0]]></categoryExpression>
+                        <valueExpression><![CDATA[$F{nutrientValue}]]></valueExpression>
+                        <labelExpression><![CDATA[$F{nutrientValue}+""]]></labelExpression>
+                    </categorySeries>
+                </categoryDataset>
+                <barPlot>
+                    <plot/>
+                    <itemLabel/>
+                    <categoryAxisFormat>
+                        <axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+                    </categoryAxisFormat>
+                    <valueAxisFormat>
+                        <axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+                    </valueAxisFormat>
+                </barPlot>
+            </barChart>
         </band>
     </detail>
-    <columnFooter>
-        <band height="45" splitType="Stretch"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54" splitType="Stretch"/>
-    </pageFooter>
-    <summary>
-        <band height="42" splitType="Stretch"/>
-    </summary>
 </jasperReport>
